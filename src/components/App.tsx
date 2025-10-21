@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react"
 
 interface Question {
-  type: "multiple",
-  difficulty: "easy" | "medium" | "hard",
-  category: string,
-  question: string,
-  correct_answer: string,
-  incorrect_answers: string[]
+  id: number
 }
 
 type Questions = Question[]
@@ -18,9 +13,10 @@ function App() {
   useEffect(() => {
     const fetchData = async function() {
       try {
-        const response = await fetch('https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple')
+        const response = await fetch('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
         const data = await response.json()
-        setQuestionPack(data.results)
+        setQuestionPack(data)
+        // console.log(questionPack)
       } catch (error) {
         console.error("Oops!", error)
       }
@@ -29,7 +25,9 @@ function App() {
   }, [])
 
   return (
-    <div className="text-3xl font-bold underline">Hello World</div>
+    <div className="text-3xl font-bold underline">
+      {questionPack.length ? questionPack[0].id : null}
+    </div>
   )
 }
 
