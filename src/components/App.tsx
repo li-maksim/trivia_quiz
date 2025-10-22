@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
+import { type Questions} from '../interfaces'
+import Content from './Content'
 
-interface Question {
-  id: number
-}
 
-type Questions = Question[]
 
 function App() {
 
@@ -16,7 +14,6 @@ function App() {
         const response = await fetch('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
         const data = await response.json()
         setQuestionPack(data)
-        // console.log(questionPack)
       } catch (error) {
         console.error("Oops!", error)
       }
@@ -26,7 +23,7 @@ function App() {
 
   return (
     <div className="text-3xl font-bold underline">
-      {questionPack.length ? questionPack[0].id : null}
+      {questionPack.length ? <Content question={questionPack[0]} /> : null}
     </div>
   )
 }
