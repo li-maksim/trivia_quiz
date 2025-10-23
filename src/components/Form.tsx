@@ -1,5 +1,5 @@
 import Input from "./Input"
-import type { FormProps } from "../interfaces"
+import type { FormProps } from "../utils/interfaces"
 
 function Form({answers, correctAnswer}: FormProps) {
 

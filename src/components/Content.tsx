@@ -1,5 +1,5 @@
 import Form from "./Form"
-import { type ContentProps} from '../interfaces'
+import { type ContentProps} from '../utils/interfaces'
 
 function Content({ question }: ContentProps) {
 

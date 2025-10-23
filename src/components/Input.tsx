@@ -1,4 +1,4 @@
-import { type InputProps } from "../interfaces"
+import { type InputProps } from "../utils/interfaces"
 
 function Input({type = "checkbox", id, questionText}: InputProps) {
 

@@ -1,9 +1,20 @@
 import App from '../components/App'
-import { render } from '@testing-library/react'
+import { render, act } from '@testing-library/react'
+
+globalThis.fetch = vi.fn(() => {
+    Promise.resolve({
+        json: () => 
+            Promise.resolve({
+                question: "question?",
+                answers: {a: 'a', b: 'b'}
+            })
+    })
+}) as unknown as typeof fetch
 
 describe('First test', () => {
-    it('Tests', () => {
-        render(<App />)
-        expect(true).toBeTruthy()
+    it('Tests', async () => {
+
+        await act(() => render(<App />))
+        expect(fetch).toHaveBeenCalledOnce()
     })
 })

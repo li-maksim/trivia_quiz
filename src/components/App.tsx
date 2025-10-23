@@ -1,29 +1,16 @@
-import { useEffect, useState } from 'react'
-import { type Questions} from '../interfaces'
+import { useFetchData } from '../utils/useFetchData'
 import Content from './Content'
-
-
 
 function App() {
 
-  const [questionPack, setQuestionPack] = useState<Questions>([])
+  const [data, loading, error] = useFetchData('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
 
-  useEffect(() => {
-    const fetchData = async function() {
-      try {
-        const response = await fetch('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
-        const data = await response.json()
-        setQuestionPack(data)
-      } catch (error) {
-        console.error("Oops!", error)
-      }
-    }
-    fetchData()
-  }, [])
+  if (loading) return <div>Loading</div>
+  if (error) return <div>Sorry!</div>
 
   return (
     <div className="text-3xl font-bold underline">
-      {questionPack.length ? <Content question={questionPack[0]} /> : null}
+      Hello World!
     </div>
   )
 }
