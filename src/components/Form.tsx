@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import Input from "./Input"
-import type { FormProps } from "../utils/interfaces"
+import type { FormProps, Values } from "../utils/interfaces"
 
 function Form({answers, correctAnswer}: FormProps) {
 
@@ -7,13 +8,30 @@ function Form({answers, correctAnswer}: FormProps) {
         e.preventDefault()
     }
 
+    const initialValues = {
+        a: false,
+        b: false,
+        c: false,
+        d: false
+    }
+    
+    const [values, setValues] = useState<Values>(initialValues)
+
+    function changeValues(key: string): void {
+        setValues(initialValues)
+        setValues({
+            ...values,
+            [key]: true
+        })
+    }
+
     return(
         <form action="POST" onSubmit={(e) => onSubmit(e)}>
             <div>
-                <Input id="a" questionText={answers.answer_a}/>
-                <Input id="b" questionText={answers.answer_b}/>
-                <Input id="c" questionText={answers.answer_c}/>
-                <Input id="d" questionText={answers.answer_d}/>
+                <Input id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues}/>
+                <Input id="b" questionText={answers.answer_b} checked={values.b} fn={changeValues}/>
+                <Input id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues}/>
+                <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues}/>
             </div>
             <button>Submit</button>
         </form>

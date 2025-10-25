@@ -1,13 +1,31 @@
 import { type InputProps } from "../utils/interfaces"
 
-function Input({type = "checkbox", id, questionText}: InputProps) {
+function Input({type = "checkbox", id, questionText, checked, fn}: InputProps) {
 
-    return (
-        <label htmlFor="">
-            <input type={type} id={id} />
-            {questionText}
-        </label>
-    )
+    if (type === "checkbox") {
+        return (
+            <label htmlFor={id}>
+                <input 
+                type={type} 
+                id={id}
+                checked={checked}
+                onClick={() => fn(id)} 
+                />
+                {questionText}
+            </label>
+        )
+    } else {
+        return (
+            <label htmlFor={id}>
+                <input 
+                type={type} 
+                id={id}
+                onClick={() => fn(id)} 
+                />
+                {questionText}
+            </label>
+        )
+    }
 }
 
 export default Input

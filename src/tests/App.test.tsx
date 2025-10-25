@@ -11,8 +11,8 @@ globalThis.fetch = vi.fn(() => {
     })
 }) as unknown as typeof fetch
 
-describe('First test', () => {
-    it('Tests', async () => {
+describe('App component tests', () => {
+    it('Fetches data on startup', async () => {
 
         await act(() => render(<App />))
         expect(fetch).toHaveBeenCalledOnce()
