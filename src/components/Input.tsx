@@ -9,7 +9,7 @@ function Input({type = "checkbox", id, questionText, checked, fn}: InputProps) {
                 type={type} 
                 id={id}
                 checked={checked}
-                onClick={() => fn(id)} 
+                onChange={() => fn(id)} 
                 />
                 {questionText}
             </label>

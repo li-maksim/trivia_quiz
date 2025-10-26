@@ -18,11 +18,8 @@ function Form({answers, correctAnswer}: FormProps) {
     const [values, setValues] = useState<Values>(initialValues)
 
     function changeValues(key: string): void {
-        setValues(initialValues)
-        setValues({
-            ...values,
-            [key]: true
-        })
+        const newValues = {...initialValues, [key]: true}
+        setValues(newValues)
     }
 
     return(
