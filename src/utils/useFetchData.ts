@@ -4,7 +4,7 @@ import { type Questions } from './interfaces';
 export const useFetchData = (url: string) => {
 
     const [data, setData] = useState<Questions>([]);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {

@@ -3,15 +3,13 @@ import Content from './Content'
 
 function App() {
 
-  const [data, loading, error] = useFetchData('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
+  // const [data, loading, error] = useFetchData('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
 
-  if (loading) return <div>Loading</div>
-  if (error) return <div>Sorry!</div>
+  // if (loading) return <div>Loading</div>
+  // if (error) return <div>Sorry!</div>
 
   return (
-    <div className="text-3xl font-bold underline">
-      Hello World!
-    </div>
+    <Content />
   )
 }
 

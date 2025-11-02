@@ -23,13 +23,16 @@ export interface Question {
 
 export type Questions = Question[]
 
-export interface ContentProps {
-  question: Question
-}
+// export interface ContentProps {
+//   question: Question
+// }
 
 export interface FormProps {
   answers: Question['answers'],
-  correctAnswer: string
+  correctAnswer: string,
+  onSubmit: {
+    (isCorrect: boolean): void
+  }
 }
 
 export interface Values {
