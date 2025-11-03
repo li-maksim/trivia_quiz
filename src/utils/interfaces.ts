@@ -23,15 +23,32 @@ export interface Question {
 
 export type Questions = Question[]
 
-// export interface ContentProps {
-//   question: Question
-// }
+export interface ContentProps {
+  questionNumber: number
+  onSubmit: {
+    (isAnswerCorrect: boolean) : void
+  }
+}
 
 export interface FormProps {
   answers: Question['answers'],
   correctAnswer: string,
   onSubmit: {
     (isCorrect: boolean): void
+  }
+}
+
+export interface HeaderProps {
+  restartFn: {
+    (): void
+  },
+  questionNumber: number,
+  score: number
+}
+
+export interface StartingScreenProps {
+  startFn: {
+    (): void
   }
 }
 

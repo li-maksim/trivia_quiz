@@ -1,15 +1,35 @@
-import { useFetchData } from '../utils/useFetchData'
+import { useState } from 'react'
+import Header from './Header'
+import StartingScreen from './StartingScreen'
 import Content from './Content'
 
 function App() {
 
-  // const [data, loading, error] = useFetchData('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
+  const [questionNumber, setQuestionNumber] = useState<number>(0)
+  const [score, setScore] = useState<number>(0)
+  const [hasStarted, setHasStarted] = useState<boolean>(false)
 
-  // if (loading) return <div>Loading</div>
-  // if (error) return <div>Sorry!</div>
+  function onSubmit(isAnswerCorrect : boolean): void {
+    if (questionNumber < 10) setQuestionNumber(questionNumber + 1)
+    if (isAnswerCorrect) setScore(score + 1)
+  }
+
+  function restart(): void {
+    return
+  }
+
+  function start(): void {
+    setHasStarted(true)
+  }
 
   return (
-    <Content />
+    <>
+        <Header restartFn={restart} questionNumber={questionNumber} score={score}/>
+        {hasStarted
+          ? <Content questionNumber={questionNumber + 1} onSubmit={onSubmit} />
+          : <StartingScreen startFn={start} />
+        }
+    </>
   )
 }
 

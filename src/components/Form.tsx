@@ -29,6 +29,7 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
 
     function checkTheAnswer() {
         const answer = Object.keys(values).find(key => values[key as keyof typeof values] === true)
+        // console.log(answer + ' ' + correctAnswer)
 
         if (answer === correctAnswer) {
             return true
@@ -45,6 +46,7 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
             setSumbittedEmpty(false)
             const isAnswerCorrect = checkTheAnswer()
             onSubmit(isAnswerCorrect)
+            setValues(initialValues)
         }
     }
 
@@ -56,7 +58,7 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
                 <Input id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues}/>
                 <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues}/>
             </div>
-            {!submittedEmpty ? <div>Error message</div> : null}
+            {submittedEmpty ? <div>Error message</div> : null}
             <button>Submit</button>
         </form>
     )
