@@ -8,6 +8,7 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState<number>(0)
   const [score, setScore] = useState<number>(0)
   const [hasStarted, setHasStarted] = useState<boolean>(false)
+  const [isReady, setIsReady] = useState<boolean>(false)
 
   function onSubmit(isAnswerCorrect : boolean): void {
     if (questionNumber < 10) setQuestionNumber(questionNumber + 1)
@@ -16,6 +17,7 @@ function App() {
 
   function restart(): void {
     setHasStarted(false)
+    setIsReady(false)
   }
 
   function start(): void {
@@ -31,14 +33,14 @@ function App() {
     <>
         <Header 
           restartFn={restart} 
-          questionNumber={questionNumber} 
+          questionNumber={questionNumber + 1} 
           score={score}
           seconds={67}
-          hasStarted={hasStarted}
+          hasStarted={hasStarted && isReady}
           onTimeout={handleTimeout}
         />
         {hasStarted
-          ? <Content questionNumber={questionNumber + 1} onSubmit={onSubmit} />
+          ? <Content questionNumber={questionNumber} onSubmit={onSubmit} onFinishLoading={() => setIsReady(true)} />
           : <StartingScreen startFn={start} />
         }
     </>

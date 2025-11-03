@@ -25,6 +25,9 @@ export type Questions = Question[]
 
 export interface ContentProps {
   questionNumber: number
+  onFinishLoading: {
+    (): void
+  },
   onSubmit: {
     (isAnswerCorrect: boolean) : void
   }
