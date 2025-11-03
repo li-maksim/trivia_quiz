@@ -38,18 +38,26 @@ export interface FormProps {
   }
 }
 
-export interface HeaderProps {
+export interface StartingScreenProps {
+  startFn: {
+    (): void
+  }
+}
+
+export interface TimerProps {
+  seconds: number,
+  hasStarted: boolean,
+  onTimeout: {
+    (): void
+  }
+}
+
+export interface HeaderProps extends TimerProps {
   restartFn: {
     (): void
   },
   questionNumber: number,
   score: number
-}
-
-export interface StartingScreenProps {
-  startFn: {
-    (): void
-  }
 }
 
 export interface Values {
