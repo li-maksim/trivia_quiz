@@ -6,7 +6,7 @@ function Button({btnType = "button", onClick, text}: ButtonProps) {
         <button 
             type={btnType}
             onClick={onClick} 
-            className="min-h-10 min-w-25 cursor-pointer bg-black text-white text-l rounded-lg"
+            className="min-h-10 min-w-25 cursor-pointer bg-btn text-text-clr text-l rounded-lg"
         >
             {text}
         </button>

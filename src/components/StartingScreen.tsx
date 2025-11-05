@@ -4,7 +4,7 @@ import Button from './Button'
 function StartingScreen({ startFn }: StartingScreenProps) {
 
     return (
-        <section className="">
+        <section className="flex w-full min-h-[calc(100vh-50px)] justify-center items-center">
             <Button onClick={startFn} text="Start" />
         </section>
     )

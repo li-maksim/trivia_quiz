@@ -51,15 +51,21 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
     }
 
     return(
-        <form action="POST" onSubmit={(e) => handleSubmit(e)}>
-            <div>
+        <form 
+            action="POST" 
+            onSubmit={(e) => handleSubmit(e)}
+            className=""
+        >
+            <div className="flex flex-col gap-5 mt-5">
                 <Input id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues}/>
                 <Input id="b" questionText={answers.answer_b} checked={values.b} fn={changeValues}/>
                 <Input id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues}/>
                 <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues}/>
             </div>
             {submittedEmpty ? <div>Error message</div> : null}
-            <Button btnType="submit" text="Submit" />
+            <div className="mt-5 flex justify-center">
+                <Button btnType="submit" text="Submit" />
+            </div>
         </form>
     )
 }

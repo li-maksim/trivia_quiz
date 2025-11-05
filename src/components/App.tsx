@@ -32,12 +32,12 @@ function App() {
   }
 
   return (
-    <>
+    <div className="">
         <Header 
           restartFn={restart} 
           questionNumber={questionNumber + 1} 
           score={score}
-          seconds={67}
+          seconds={1067}
           hasStarted={hasStarted && isReady}
           onTimeout={handleTimeout}
         />
@@ -45,7 +45,7 @@ function App() {
           ? <Content questionNumber={questionNumber} onSubmit={onSubmit} onFinishLoading={() => setIsReady(true)} />
           : <StartingScreen startFn={start} />
         }
-    </>
+    </div>
   )
 }
 

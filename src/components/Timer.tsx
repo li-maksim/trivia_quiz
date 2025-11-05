@@ -21,13 +21,13 @@ function Timer({seconds, hasStarted, onTimeout}: TimerProps) {
         }, 1000)
     
         return () => clearInterval(timer)
-      }, [hasStarted, seconds, onTimeout])
+      }, [hasStarted, seconds])
 
     const minutesLeft: number = Math.floor(time / 60)
     const secondsLeft: number = time % 60
 
     return(
-        <div>
+        <div className="text-btn font-bold">
             {(minutesLeft < 10) ? '0' + minutesLeft : minutesLeft}:{(secondsLeft < 10) ? '0' + secondsLeft : secondsLeft}
         </div>
     )

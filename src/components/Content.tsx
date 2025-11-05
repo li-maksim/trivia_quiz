@@ -22,8 +22,8 @@ function Content({questionNumber, onSubmit, onFinishLoading} : ContentProps) {
     onFinishLoading()
 
     return (
-        <section>
-            <p>Question: {data[questionNumber].question}</p>
+        <section className="w-full mt-8 pl-8 pr-8">
+            <p className="text-xl text-center">{data[questionNumber].question}</p>
             <Form 
                 answers={data[questionNumber].answers} 
                 correctAnswer={findCorrectAnswer()}
