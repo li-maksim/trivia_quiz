@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Input from "./Input"
+import Button from './Button'
 import type { FormProps, Values } from "../utils/interfaces"
 
 function Form({answers, correctAnswer, onSubmit}: FormProps) {
@@ -29,7 +30,6 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
 
     function checkTheAnswer() {
         const answer = Object.keys(values).find(key => values[key as keyof typeof values] === true)
-        // console.log(answer + ' ' + correctAnswer)
 
         if (answer === correctAnswer) {
             return true
@@ -59,7 +59,7 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
                 <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues}/>
             </div>
             {submittedEmpty ? <div>Error message</div> : null}
-            <button>Submit</button>
+            <Button btnType="submit" text="Submit" />
         </form>
     )
 }

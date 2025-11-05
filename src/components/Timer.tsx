@@ -28,7 +28,7 @@ function Timer({seconds, hasStarted, onTimeout}: TimerProps) {
 
     return(
         <div>
-            {(minutesLeft === 0) ? '00' : minutesLeft}:{(secondsLeft === 0) ? '00' : secondsLeft}
+            {(minutesLeft < 10) ? '0' + minutesLeft : minutesLeft}:{(secondsLeft < 10) ? '0' + secondsLeft : secondsLeft}
         </div>
     )
 }

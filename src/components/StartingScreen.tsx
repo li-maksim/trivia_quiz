@@ -1,10 +1,11 @@
 import { type StartingScreenProps } from "../utils/interfaces"
+import Button from './Button'
 
 function StartingScreen({ startFn }: StartingScreenProps) {
 
     return (
-        <section>
-            <button onClick={startFn}>Start</button>
+        <section className="">
+            <Button onClick={startFn} text="Start" />
         </section>
     )
 }

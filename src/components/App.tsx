@@ -18,6 +18,8 @@ function App() {
   function restart(): void {
     setHasStarted(false)
     setIsReady(false)
+    setScore(0)
+    setQuestionNumber(0)
   }
 
   function start(): void {

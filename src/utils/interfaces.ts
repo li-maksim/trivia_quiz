@@ -63,6 +63,14 @@ export interface HeaderProps extends TimerProps {
   score: number
 }
 
+export interface ButtonProps {
+  btnType?: "submit" | "reset" | "button"
+  onClick?: {
+    (): void
+  },
+  text: string
+}
+
 export interface Values {
   a: boolean,
   b: boolean,
