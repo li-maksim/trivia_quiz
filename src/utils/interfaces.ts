@@ -24,12 +24,9 @@ export interface Question {
 export type Questions = Question[]
 
 export interface ContentProps {
-  questionNumber: number
-  onFinishLoading: {
+  hasStarted: boolean,
+  onRestart: {
     (): void
-  },
-  onSubmit: {
-    (isAnswerCorrect: boolean) : void
   }
 }
 

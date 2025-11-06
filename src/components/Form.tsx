@@ -54,9 +54,9 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
         <form 
             action="POST" 
             onSubmit={(e) => handleSubmit(e)}
-            className=""
+            className="min-w-[45%]"
         >
-            <div className="flex flex-col gap-5 mt-5">
+            <div className="flex flex-col gap-5">
                 <Input id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues}/>
                 <Input id="b" questionText={answers.answer_b} checked={values.b} fn={changeValues}/>
                 <Input id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues}/>
