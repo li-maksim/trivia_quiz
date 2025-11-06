@@ -27,7 +27,7 @@ function Timer({seconds, hasStarted, onTimeout}: TimerProps) {
     const secondsLeft: number = time % 60
 
     return(
-        <div className="text-btn font-bold">
+        <div className="">
             {(minutesLeft < 10) ? '0' + minutesLeft : minutesLeft}:{(secondsLeft < 10) ? '0' + secondsLeft : secondsLeft}
         </div>
     )

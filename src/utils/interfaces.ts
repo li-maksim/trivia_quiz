@@ -55,7 +55,7 @@ export interface TimerProps {
   }
 }
 
-export interface HeaderProps extends TimerProps {
+export interface ControlPanelProps extends TimerProps {
   restartFn: {
     (): void
   },

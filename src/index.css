@@ -3,7 +3,7 @@
 @theme {
     --color-header: #8C00FF; /* Header  */
     --color-text-clr: #450693; /* Text */
-    --color-btn: #FFC400; /* Buttons, icons and H1 in header */
+    --color-btn: #FFC400; /* Buttons, icon and H1 in header */
     --color-red: #FF3F7F; /* Wrong answers */
     --color-green: #3FFFA3; /* Correct answers */
 }

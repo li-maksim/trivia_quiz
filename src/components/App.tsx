@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './Header'
 import StartingScreen from './StartingScreen'
 import Content from './Content'
+import ControlPanel from './ControlPanel'
 
 function App() {
 
@@ -33,16 +34,23 @@ function App() {
 
   return (
     <div className="">
-        <Header 
-          restartFn={restart} 
-          questionNumber={questionNumber + 1} 
-          score={score}
-          seconds={1067}
-          hasStarted={hasStarted && isReady}
-          onTimeout={handleTimeout}
-        />
+        <Header />
         {hasStarted
-          ? <Content questionNumber={questionNumber} onSubmit={onSubmit} onFinishLoading={() => setIsReady(true)} />
+          ? <div className="flex max-w-[90%] justify-center gap-10">
+              <Content 
+                questionNumber={questionNumber} 
+                onSubmit={onSubmit} 
+                onFinishLoading={() => setIsReady(true)} 
+              />
+              <ControlPanel
+                restartFn={restart} 
+                questionNumber={questionNumber + 1} 
+                score={score}
+                seconds={1067}
+                hasStarted={hasStarted && isReady}
+                onTimeout={handleTimeout}
+              />
+            </div>
           : <StartingScreen startFn={start} />
         }
     </div>
