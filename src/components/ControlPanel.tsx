@@ -5,7 +5,7 @@ import { type ControlPanelProps } from '../utils/interfaces'
 function ControlPanel({restartFn, questionNumber, score, seconds, hasStarted, onTimeout}: ControlPanelProps) {
 
     return (
-        <div className="min-w-[45%]">
+        <div className="min-w-[30%] border-1">
             <div className="">
             Question #{questionNumber}
             </div>

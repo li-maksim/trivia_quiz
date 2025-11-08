@@ -1,13 +1,16 @@
 import { type InputProps } from "../utils/interfaces"
 import { Check } from 'lucide-react'
 
-function Input({type = "checkbox", id, questionText, checked, fn}: InputProps) {
+function Input({type = "checkbox", id, questionText, checked, fn, highlight}: InputProps) {
 
     if (type === "checkbox") {
         return (
                     <label
                     htmlFor={id}
-                    className="flex items-center gap-3 p-3 border-2 border-header rounded-lg cursor-pointer"
+                    className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer
+                        ${highlight === "green" ? "border-2 border-green bg-green" 
+                          : highlight === "red" ? "border-2 border-red bg-red"
+                          : "border-2 border-header"}`}
                     >
                         <input
                             type="checkbox"

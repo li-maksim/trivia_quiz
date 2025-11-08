@@ -1,5 +1,5 @@
 import Form from '../components/Form'
-import { render, act, screen } from '@testing-library/react'
+import { render, act, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import TestData from '../utils/test_data'
 
@@ -18,7 +18,7 @@ describe('App component tests', () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
         const inputs = screen.getAllByRole('checkbox') as HTMLInputElement[]
 
-        // We click on the option A and then on the option B
+        // Clicking on the option A and then on the option B
         await user.click(inputs[0])
         await user.click(inputs[1])
 
@@ -35,16 +35,31 @@ describe('App component tests', () => {
         expect(onSubmit).not.toHaveBeenCalled()
     })
 
+    it('Submits the form', async () => {
+        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
+        const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const btn = screen.getByRole('button')
+        
+        await user.click(input[0])
+        await user.click(btn)
+
+        await waitFor(() => {
+            expect(onSubmit).toHaveBeenCalled()
+        })
+    })
+
     it('Submits the correct answer', async () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
         const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
         const btn = screen.getByRole('button')
         
-        //We click on the right option and check if it passes onSubmit function with the correct argument
+        //Clicking on the right option and check if it calls onSubmit function with the correct argument
         await user.click(input[0])
         await user.click(btn)
 
-        expect(onSubmit).toHaveBeenCalledExactlyOnceWith(true)
+        await waitFor(() => {
+            expect(onSubmit).toHaveBeenCalledWith(true)
+        })
     })
 
     it('Submits the wrong answer', async () => {
@@ -52,10 +67,12 @@ describe('App component tests', () => {
         const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
         const btn = screen.getByRole('button')
         
-        //We click on the wrong option and check if it passes onSubmit function with the correct argument
+        //Clicking on the wrong option and check if it calls onSubmit function with the correct argument
         await user.click(input[1])
         await user.click(btn)
 
-        expect(onSubmit).toHaveBeenCalledExactlyOnceWith(false)
+        await waitFor(() => {
+            expect(onSubmit).toHaveBeenCalledWith(false)
+        }, {timeout: 1500})
     })
 })

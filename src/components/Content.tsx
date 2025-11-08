@@ -21,7 +21,7 @@ function Content({hasStarted, onRestart} : ContentProps) {
         const correctAnswer = Object.keys(possibleAnswers)
             .find(key => possibleAnswers[key as keyof typeof possibleAnswers] === 'true')
         
-        //We return just the letter of the option (a or b or c, etc.)
+        //Returning just the letter of the option (a or b or c, etc.)
         return correctAnswer?.split("")[7] ?? ""
     }
 

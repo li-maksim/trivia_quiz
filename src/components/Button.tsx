@@ -1,16 +1,26 @@
 import { type ButtonProps } from '../utils/interfaces'
 
-function Button({btnType = "button", onClick, text}: ButtonProps) {
+function Button({btnType = "button", onClick, text, disabled = false}: ButtonProps) {
 
-    return (
-        <button 
-            type={btnType}
-            onClick={onClick} 
-            className="min-h-10 min-w-25 cursor-pointer bg-btn text-text-clr text-l rounded-lg"
-        >
-            {text}
-        </button>
-    )
+    if (!disabled) {
+        return (
+            <button
+                type={btnType}
+                onClick={onClick} 
+                className="min-h-10 min-w-25 cursor-pointer bg-btn text-text-clr text-l rounded-lg"
+            >
+                {text}
+            </button>
+    )} else {
+        return (
+            <button
+                disabled
+                className="min-h-10 min-w-25 bg-gray-200 text-gray-400 text-l rounded-lg"
+            >
+                {text}
+            </button>
+        )
+    }
 }
 
 export default Button

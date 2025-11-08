@@ -3,6 +3,7 @@ export interface InputProps {
     id: string,
     questionText: string,
     checked?: boolean,
+    highlight?: null | "green" | "red",
     fn: {
       (key: string): void
     }
@@ -65,7 +66,8 @@ export interface ButtonProps {
   onClick?: {
     (): void
   },
-  text: string
+  text: string,
+  disabled?: boolean
 }
 
 export interface Values {
@@ -73,4 +75,11 @@ export interface Values {
   b: boolean,
   c: boolean,
   d: boolean
+}
+
+export interface Highlights {
+  a: null | "green" | "red",
+  b: null | "green" | "red",
+  c: null | "green" | "red",
+  d: null | "green" | "red"
 }

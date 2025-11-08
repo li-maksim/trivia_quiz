@@ -11,11 +11,9 @@ globalThis.fetch = vi.fn(() => {
     })
 }) as unknown as typeof fetch
 
-const onSubmit = vi.fn()
-
 describe('Content component tests', () => {
     it('Fetches data on startup', async () => {
-        await act(() => render(<Content questionNumber={0} onSubmit={onSubmit} />))
+        await act(() => render(<Content hasStarted={true} onRestart={() => vi.fn()} />))
         expect(fetch).toHaveBeenCalledOnce()
     })
 })
