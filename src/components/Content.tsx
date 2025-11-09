@@ -26,8 +26,15 @@ function Content({hasStarted, onRestart} : ContentProps) {
     }
 
     function onSubmit(isAnswerCorrect : boolean): void {
-        if (questionNumber < 10) setQuestionNumber(questionNumber + 1)
         if (isAnswerCorrect) setScore(score + 1)
+    }
+
+    function nextQuestion(): void {
+        if (questionNumber < 10) {
+            setQuestionNumber(questionNumber + 1)
+        } else {
+            alert('Congratulations!')
+        }
     }
 
     function restart(): void {
@@ -49,6 +56,7 @@ function Content({hasStarted, onRestart} : ContentProps) {
                     answers={data[questionNumber].answers} 
                     correctAnswer={findCorrectAnswer()}
                     onSubmit={onSubmit}
+                    nextQuestion={nextQuestion}
                 />
                 <ControlPanel
                     restartFn={restart} 

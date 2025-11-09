@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Input from "./Input"
 import Button from './Button'
-import type { FormProps, Values, Highlights } from "../utils/interfaces"
+import { type FormProps, type Values, type Highlights } from "../utils/interfaces"
 
-function Form({answers, correctAnswer, onSubmit}: FormProps) {
+function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
 
     const initialValues = {
         a: false,
@@ -25,8 +25,10 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
     const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>(false)
 
     function changeValues(key: string): void {
-        const newValues = {...initialValues, [key]: true}
-        setValues(newValues)
+        if (!isBtnDisabled) {
+            const newValues = {...initialValues, [key]: true}
+            setValues(newValues)
+        }
     }
 
     function checkIfAnOptionWasPicked(): boolean {
@@ -69,8 +71,8 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
         e.preventDefault()
     
         if (!checkIfAnOptionWasPicked()) {
-          setSubmittedEmpty(true)
-          return
+            setSubmittedEmpty(true)
+            return
         }
     
         setSubmittedEmpty(false)
@@ -81,7 +83,8 @@ function Form({answers, correctAnswer, onSubmit}: FormProps) {
 
         // Delay to show correct option
         setTimeout(() => {
-          resetForm()
+            nextQuestion()
+            resetForm()
         }, 1000)
       }
 

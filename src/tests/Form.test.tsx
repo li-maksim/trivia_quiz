@@ -10,12 +10,12 @@ describe('App component tests', () => {
     const onSubmit = vi.fn()
 
     it('Renders the Form component', async () => {
-        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
+        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={() => vi.fn()}/>))
         expect(true).toBeTruthy()
     })
 
     it('Checks only one checkbox', async () => {
-        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
+        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={() => vi.fn()}/>))
         const inputs = screen.getAllByRole('checkbox') as HTMLInputElement[]
 
         // Clicking on the option A and then on the option B
@@ -27,7 +27,7 @@ describe('App component tests', () => {
     })
 
     it('Does not submit empty form', async () => {
-        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
+        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={() => vi.fn()}/>))
         const btn = screen.getByRole('button')
     
         await user.click(btn)
@@ -36,7 +36,7 @@ describe('App component tests', () => {
     })
 
     it('Submits the form', async () => {
-        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
+        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={() => vi.fn()}/>))
         const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
         const btn = screen.getByRole('button')
         
@@ -49,7 +49,7 @@ describe('App component tests', () => {
     })
 
     it('Submits the correct answer', async () => {
-        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit}/>))
+        await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={() => vi.fn()}/>))
         const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
         const btn = screen.getByRole('button')
         

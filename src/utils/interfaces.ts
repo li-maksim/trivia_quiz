@@ -36,6 +36,9 @@ export interface FormProps {
   correctAnswer: string,
   onSubmit: {
     (isCorrect: boolean): void
+  },
+  nextQuestion: {
+    (): void
   }
 }
 
@@ -53,10 +56,13 @@ export interface TimerProps {
   }
 }
 
-export interface ControlPanelProps extends TimerProps {
+export interface HeaderProps {
   restartFn: {
     (): void
-  },
+  }
+}
+
+export interface ControlPanelProps extends TimerProps {
   questionNumber: number,
   score: number
 }

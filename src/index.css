@@ -4,8 +4,12 @@
     --color-header: #8C00FF; /* Header  */
     --color-text-clr: #450693; /* Text */
     --color-btn: #FFC400; /* Buttons, icon and H1 in header */
+    --color-time-mid: #FF703F; /* Timer */
     --color-red: #FF3F7F; /* Wrong answers */
-    --color-green: #3FFFA3; /* Correct answers */
+    --color-green-answer: #3FFFA3; /* Correct answers */
+    --color-green-timer: #42B07B; /* Green for timer */
+    --color-orange-timer: #FF703F; /* Orange for timer */
+    --color-bg-clr: #FFE6FF; /* Control panel background */
 }
 
 body {

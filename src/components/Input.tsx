@@ -8,7 +8,7 @@ function Input({type = "checkbox", id, questionText, checked, fn, highlight}: In
                     <label
                     htmlFor={id}
                     className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer
-                        ${highlight === "green" ? "border-2 border-green bg-green" 
+                        ${highlight === "green" ? "border-2 border-green-answer bg-green-answer" 
                           : highlight === "red" ? "border-2 border-red bg-red"
                           : "border-2 border-header"}`}
                     >

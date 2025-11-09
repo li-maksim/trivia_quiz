@@ -27,8 +27,11 @@ function Timer({seconds, hasStarted, onTimeout}: TimerProps) {
     const secondsLeft: number = time % 60
 
     return(
-        <div className="">
-            {(minutesLeft < 10) ? '0' + minutesLeft : minutesLeft}:{(secondsLeft < 10) ? '0' + secondsLeft : secondsLeft}
+        <div className={`text-3xl font-black 
+          ${time < seconds / 3 ? "text-red"
+          : time < seconds / 3 * 2 ? "text-orange-timer"
+          : "text-green-timer"}`}>
+          {(minutesLeft < 10) ? '0' + minutesLeft : minutesLeft}:{(secondsLeft < 10) ? '0' + secondsLeft : secondsLeft}
         </div>
     )
 }

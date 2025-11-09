@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="">
-        <Header />
+        <Header restartFn={restart} />
         {hasStarted
           ? <Content hasStarted={hasStarted} onRestart={restart}/>
           : <StartingScreen startFn={start} />
