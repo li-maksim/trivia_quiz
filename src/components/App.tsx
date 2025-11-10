@@ -11,15 +11,15 @@ function App() {
     setHasStarted(true)
   }
 
-  function restart(): void {
+  function goHome(): void {
     setHasStarted(false)
   }
 
   return (
     <div className="">
-        <Header restartFn={restart} />
+        <Header goHome={goHome} />
         {hasStarted
-          ? <Content hasStarted={hasStarted} onRestart={restart}/>
+          ? <Content hasStarted={hasStarted} goHome={goHome} />
           : <StartingScreen startFn={start} />
         }
     </div>

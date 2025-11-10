@@ -1,7 +1,7 @@
 import { type HeaderProps } from '../utils/interfaces'
 import { MessageCircleQuestionMark } from 'lucide-react'
 
-function Header({ restartFn }: HeaderProps) {
+function Header({ goHome }: HeaderProps) {
 
     return (
         <header className="sticky top-0 left-0 w-full h-[50px] bg-header flex justify-start gap-8 items-center pl-8 pr-8">
@@ -9,7 +9,7 @@ function Header({ restartFn }: HeaderProps) {
                 <MessageCircleQuestionMark className="w-8 h-8 text-btn"/>
                 <h1 className="text-btn font-black text-xl">Quiz</h1>
             </div>
-            <div onClick={restartFn} className="text-btn font-black cursor-pointer text-lg hover:underline">
+            <div onClick={goHome} className="text-btn font-black cursor-pointer text-lg hover:text-orange-timer">
                 Home
             </div>
         </header>       

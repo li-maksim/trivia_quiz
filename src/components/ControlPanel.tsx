@@ -8,7 +8,7 @@ function ControlPanel({ questionNumber, score, seconds, hasStarted, onTimeout}: 
             <div>
                 <div className="">
                     <span className="text-2xl text-header font-black">Question:</span> 
-                    <span className="text-2xl"> {questionNumber}</span>
+                    <span className="text-2xl"> {questionNumber}/10</span>
                 </div>
                 <div className="mt-5">
                     <span className="text-2xl text-header font-black">Score:</span> 

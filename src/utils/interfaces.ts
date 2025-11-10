@@ -26,7 +26,7 @@ export type Questions = Question[]
 
 export interface ContentProps {
   hasStarted: boolean,
-  onRestart: {
+  goHome: {
     (): void
   }
 }
@@ -57,7 +57,7 @@ export interface TimerProps {
 }
 
 export interface HeaderProps {
-  restartFn: {
+  goHome: {
     (): void
   }
 }
@@ -74,6 +74,16 @@ export interface ButtonProps {
   },
   text: string,
   disabled?: boolean
+}
+
+export interface FinalScreenProps {
+  show: boolean,
+  message: string,
+  score: number,
+  completedQuestions: number,
+  goHome: {
+    (): void
+  }
 }
 
 export interface Values {

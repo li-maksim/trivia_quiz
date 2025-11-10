@@ -1,16 +1,22 @@
 import Form from './Form'
 import ControlPanel from './ControlPanel'
+import FinalScreen from './FinalScreen'
 import { useState } from 'react'
 import { type ContentProps } from '../utils/interfaces'
 import { useFetchData } from '../utils/useFetchData'
 
-function Content({hasStarted, onRestart} : ContentProps) {
+function Content({hasStarted, goHome} : ContentProps) {
+
+    const initialMessage = "You've completed the Quiz!"
 
     //Fetching questions from API
     const [data, loading, error] = useFetchData('https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10')
     //Keeping the player's score and the current question
     const [questionNumber, setQuestionNumber] = useState<number>(0)
     const [score, setScore] = useState<number>(0)
+    //Showing final screen. This state will be also used to stop timer.
+    const [showFinalScreen, setShowFinalScreen] = useState<boolean>(false)
+    const [finalsScreenMessage, setShowFinalScreenMessage] = useState<string>(initialMessage)
 
     if (loading) return <div>Loading</div>
     if (error) return <div>Sorry!</div>
@@ -30,22 +36,18 @@ function Content({hasStarted, onRestart} : ContentProps) {
     }
 
     function nextQuestion(): void {
-        if (questionNumber < 10) {
+        if (questionNumber < 9) {
             setQuestionNumber(questionNumber + 1)
         } else {
-            alert('Congratulations!')
+            //Finishing the quiz if the player answered all questions
+            setShowFinalScreenMessage(initialMessage)
+            setShowFinalScreen(true)
         }
     }
 
-    function restart(): void {
-        onRestart()
-        setScore(0)
-        setQuestionNumber(0)
-    }
-
     function handleTimeout() {
-        alert('Done!')
-        restart()
+        setShowFinalScreenMessage("Sorry, time's up!")
+        setShowFinalScreen(true)
     }
 
     return (
@@ -59,14 +61,20 @@ function Content({hasStarted, onRestart} : ContentProps) {
                     nextQuestion={nextQuestion}
                 />
                 <ControlPanel
-                    restartFn={restart} 
                     questionNumber={questionNumber + 1} 
                     score={score}
-                    seconds={1067}
-                    hasStarted={hasStarted}
+                    seconds={300}
+                    hasStarted={hasStarted && !showFinalScreen}
                     onTimeout={handleTimeout}
                 />
             </div>
+            <FinalScreen 
+                show={showFinalScreen} 
+                message={finalsScreenMessage}
+                score={score} 
+                completedQuestions={questionNumber}
+                goHome={goHome}
+            />
         </section>
     )
 }
