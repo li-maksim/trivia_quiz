@@ -61,32 +61,31 @@ function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
         return isCorrect
       }
     
-      function resetForm() {
-        setValues(initialValues)
-        setHighlights(initialHighlights)
-        setIsBtnDisabled(false)
-      }
-    
-      function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault()
-    
-        if (!checkIfAnOptionWasPicked()) {
-            setSubmittedEmpty(true)
-            return
-        }
-    
-        setSubmittedEmpty(false)
-        setIsBtnDisabled(true)
-    
-        const isCorrect = checkAndHighlight()
-        onSubmit(isCorrect)
+    function resetForm() {
+    setValues(initialValues)
+    setHighlights(initialHighlights)
+    setIsBtnDisabled(false)
+    }
 
-        // Delay to show correct option
-        setTimeout(() => {
-            nextQuestion()
-            resetForm()
-        }, 1500)
-      }
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    if (!checkIfAnOptionWasPicked()) {
+        setSubmittedEmpty(true)
+        return
+    }
+
+    setSubmittedEmpty(false)
+    setIsBtnDisabled(true)
+
+    const isCorrect = checkAndHighlight()
+    onSubmit(isCorrect)
+    }
+
+    function goToNext() {
+        nextQuestion()
+        resetForm()
+    }
 
     return(
         <form 
@@ -100,9 +99,10 @@ function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
                 <Input id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues} highlight={highlights.c}/>
                 <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues} highlight={highlights.d}/>
             </div>
-            {submittedEmpty ? <div className="text-red">Error message</div> : null}
-            <div className="mt-5 flex justify-end">
+            {submittedEmpty ? <div className="text-red">Please choose an option</div> : null}
+            <div className="mt-5 flex justify-end gap-5">
                 <Button btnType="submit" text="Submit" disabled={isBtnDisabled} />
+                <Button text="Next" onClick={goToNext} disabled={!isBtnDisabled} />
             </div>
         </form>
     )

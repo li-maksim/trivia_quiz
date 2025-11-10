@@ -7,7 +7,7 @@ function FinalScreen({show, message, score, completedQuestions, goHome}: FinalSc
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 backdrop-blur-sm">
             <div className="min-w-[40%] min-h-[50%] bg-white flex flex-col justify-center items-center gap-5">
                 <div className="text-xl font-bold">{message}</div>
-                    {completedQuestions < 10 
+                    {completedQuestions < 9 
                         && <div className="text-xl">{"You completed " + completedQuestions + " out of 10 questions."}</div>
                     }
                 <div className="text-xl">

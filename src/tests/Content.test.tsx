@@ -13,7 +13,7 @@ globalThis.fetch = vi.fn(() => {
 
 describe('Content component tests', () => {
     it('Fetches data on startup', async () => {
-        await act(() => render(<Content hasStarted={true} onRestart={() => vi.fn()} />))
+        await act(() => render(<Content hasStarted={true} goHome={() => vi.fn()} />))
         expect(fetch).toHaveBeenCalledOnce()
     })
 })

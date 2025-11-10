@@ -6,7 +6,7 @@ describe('Input tests', () => {
 
     const user = userEvent.setup()
 
-    let inputValue = false
+    const inputValue = false
 
     const handleInputClick = vi.fn()
 

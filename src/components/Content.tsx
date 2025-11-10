@@ -53,7 +53,7 @@ function Content({hasStarted, goHome} : ContentProps) {
     return (
         <section className="w-[70%] m-0 m-auto mt-8 pl-8 pr-8 flex flex-col">
             <p className="text-xl">{data[questionNumber].question}</p>
-            <div className="flex w-full justify-between mt-8">
+            <div className="flex w-full mt-8 justify-between gap-8">
                 <Form 
                     answers={data[questionNumber].answers} 
                     correctAnswer={findCorrectAnswer()}
