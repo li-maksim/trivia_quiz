@@ -5,13 +5,21 @@ function FinalScreen({show, message, score, completedQuestions, goHome}: FinalSc
 
     if (show) return(
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 backdrop-blur-sm">
-            <div className="min-w-[50%] min-h-[50%] bg-white flex flex-col justify-center items-center gap-5">
-                <div className="text-xl">{message}</div>
+            <div className="min-w-[40%] min-h-[50%] bg-white flex flex-col justify-center items-center gap-5">
+                <div className="text-xl font-bold">{message}</div>
                     {completedQuestions < 10 
-                        && <div>{"You completed " + completedQuestions + " out of 10 questions."}</div>
+                        && <div className="text-xl">{"You completed " + completedQuestions + " out of 10 questions."}</div>
                     }
-                <div className="text-xl">Final score: {score}</div>
-                <Button onClick={goHome} text="Restart" />
+                <div className="text-xl">
+                    Final score:
+                    {score < 4
+                        ? <span className="font-bold text-red">{" " + score}</span>
+                        : score < 8 
+                            ? <span className="font-bold text-orange-timer">{" " + score}</span>
+                            : <span className="font-bold text-green-timer">{" " + score}</span>
+                    }
+                </div>
+                <Button onClick={goHome} text="Go home" />
             </div>
         </div>
     )

@@ -51,9 +51,9 @@ function Content({hasStarted, goHome} : ContentProps) {
     }
 
     return (
-        <section className="w-full mt-8 pl-8 pr-8">
-            <p className="text-xl text-center">{data[questionNumber].question}</p>
-            <div className="flex justify-center gap-10 mt-8">
+        <section className="w-[70%] m-0 m-auto mt-8 pl-8 pr-8 flex flex-col">
+            <p className="text-xl">{data[questionNumber].question}</p>
+            <div className="flex w-full justify-between mt-8">
                 <Form 
                     answers={data[questionNumber].answers} 
                     correctAnswer={findCorrectAnswer()}

@@ -4,15 +4,21 @@ import { type ControlPanelProps } from '../utils/interfaces'
 function ControlPanel({ questionNumber, score, seconds, hasStarted, onTimeout}: ControlPanelProps) {
 
     return (
-        <div className="min-w-[30%] bg-bg-clr flex flex-col justify-between box-border p-8">
+        <div className="min-w-[40%] bg-bg-clr rounded-lg flex flex-col justify-between box-border p-8">
             <div>
                 <div className="">
                     <span className="text-2xl text-header font-black">Question:</span> 
-                    <span className="text-2xl"> {questionNumber}/10</span>
+                    <span className="text-2xl">
+                        {" " + questionNumber}
+                        <span className="text-gray-500">/10</span>
+                    </span>
                 </div>
                 <div className="mt-5">
                     <span className="text-2xl text-header font-black">Score:</span> 
-                    <span className="text-2xl"> {score}/10</span>
+                    <span className="text-2xl">
+                        {" " + score}
+                        <span className="text-gray-500">/10</span>
+                    </span>
                 </div>
             </div>
             <div className="flex justify-center">

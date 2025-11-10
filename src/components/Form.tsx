@@ -85,14 +85,14 @@ function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
         setTimeout(() => {
             nextQuestion()
             resetForm()
-        }, 1000)
+        }, 1500)
       }
 
     return(
         <form 
             action="POST" 
             onSubmit={(e) => handleSubmit(e)}
-            className="min-w-[35%]"
+            className="min-w-[50%]"
         >
             <div className="flex flex-col gap-5">
                 <Input id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues} highlight={highlights.a}/>
