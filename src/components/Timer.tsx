@@ -27,7 +27,7 @@ function Timer({seconds, hasStarted, onTimeout}: TimerProps) {
     const secondsLeft: number = time % 60
 
     return(
-        <div className={`text-3xl font-black 
+        <div className={`text-2xl md:text-3xl font-black max-[480px]:text-sm
           ${time < seconds / 3 ? "text-red"
           : time < seconds / 3 * 2 ? "text-orange-timer"
           : "text-green-timer"}`}>

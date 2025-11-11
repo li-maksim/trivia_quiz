@@ -100,7 +100,6 @@ describe('App component tests', () => {
         const next = screen.getByText('Next')
         const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
         
-        //Clicking on 'Submit' button twice should call onSubmit() only once
         await user.click(input[0])
         await user.click(submit)
         await user.click(next)

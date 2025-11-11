@@ -21,7 +21,7 @@ function Input({type = "checkbox", id, questionText, checked, fn, highlight}: In
                         />
                         <span
                             className="
-                            w-5 h-5 border-2 border-gray-400 rounded-md 
+                            min-w-5 min-h-5 border-2 border-gray-400 rounded-md 
                             flex items-center justify-center 
                             peer-checked:bg-header peer-checked:border-header
                             transition-all duration-200
@@ -29,7 +29,7 @@ function Input({type = "checkbox", id, questionText, checked, fn, highlight}: In
                             >
                             {checked && <Check size={16} strokeWidth={4} className="text-white" />}
                         </span>
-                        <span className="text-lg">{questionText}</span>
+                        <span className="text-sm lg:text-lg">{questionText}</span>
                     </label>
                 )
     } else {

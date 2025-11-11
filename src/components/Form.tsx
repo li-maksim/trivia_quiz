@@ -91,7 +91,6 @@ function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
         <form 
             action="POST" 
             onSubmit={(e) => handleSubmit(e)}
-            className="min-w-[50%]"
         >
             <div className="flex flex-col gap-5">
                 <Input id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues} highlight={highlights.a}/>
@@ -100,7 +99,7 @@ function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
                 <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues} highlight={highlights.d}/>
             </div>
             {submittedEmpty ? <div className="text-red">Please choose an option</div> : null}
-            <div className="mt-5 flex justify-end gap-5">
+            <div className="mt-5 flex justify-center md:justify-end gap-5">
                 <Button btnType="submit" text="Submit" disabled={isBtnDisabled} />
                 <Button text="Next" onClick={goToNext} disabled={!isBtnDisabled} />
             </div>

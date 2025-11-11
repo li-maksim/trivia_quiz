@@ -4,7 +4,7 @@ import { type ControlPanelProps } from '../utils/interfaces'
 function ControlPanel({ questionNumber, score, seconds, hasStarted, onTimeout}: ControlPanelProps) {
 
     return (
-        <div className="min-w-[40%] bg-bg-clr rounded-lg flex flex-col justify-between box-border p-8">
+        <div className="w-full h-full bg-bg-clr rounded-lg flex flex-col justify-between box-border p-8">
             <div>
                 <div className="">
                     <span className="text-2xl text-header font-black">Question:</span> 
