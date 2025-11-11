@@ -51,7 +51,7 @@ export interface StartingScreenProps {
 export interface TimerProps {
   seconds: number,
   hasStarted: boolean,
-  onTimeout?: {
+  onTimeout: {
     (): void
   }
 }
