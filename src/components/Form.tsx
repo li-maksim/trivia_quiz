@@ -93,10 +93,10 @@ function Form({answers, correctAnswer, onSubmit, nextQuestion}: FormProps) {
             onSubmit={(e) => handleSubmit(e)}
         >
             <div className="flex flex-col gap-5">
-                <Input id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues} highlight={highlights.a}/>
-                <Input id="b" questionText={answers.answer_b} checked={values.b} fn={changeValues} highlight={highlights.b}/>
-                <Input id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues} highlight={highlights.c}/>
-                <Input id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues} highlight={highlights.d}/>
+                <Input type="radio" id="a" questionText={answers.answer_a} checked={values.a} fn={changeValues} highlight={highlights.a}/>
+                <Input type="radio" id="b" questionText={answers.answer_b} checked={values.b} fn={changeValues} highlight={highlights.b}/>
+                <Input type="radio" id="c" questionText={answers.answer_c} checked={values.c} fn={changeValues} highlight={highlights.c}/>
+                <Input type="radio" id="d" questionText={answers.answer_d} checked={values.d} fn={changeValues} highlight={highlights.d}/>
             </div>
             {submittedEmpty ? <div className="text-red">Please choose an option</div> : null}
             <div className="mt-5 flex justify-center md:justify-end gap-5">

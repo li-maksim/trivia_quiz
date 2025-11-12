@@ -10,32 +10,13 @@ describe('Input tests', () => {
 
     const handleInputClick = vi.fn()
 
-    it('Renders the checkbox correctly', async () => {
+    it('Clicks the button', async () => {
         await act(() => render(<Input id="a" questionText="a" checked={inputValue} fn={handleInputClick} />))
 
-        const input = screen.getByRole('checkbox') as HTMLInputElement
-
-        expect(input.checked).toBe(false)
-    })
-
-    it('Checks the checkbox', async () => {
-        await act(() => render(<Input id="a" questionText="a" checked={inputValue} fn={handleInputClick} />))
-
-        const input = screen.getByRole('checkbox') as HTMLInputElement
+        const input = screen.getByRole('radio') as HTMLInputElement
 
         await user.click(input)
 
         expect(handleInputClick).toHaveBeenCalledOnce()
-    })
-
-    it('Unchecks the checkbox', async () => {
-    await act(() => render(<Input id="a" questionText="a" checked={inputValue} fn={handleInputClick} />))
-
-        const input = screen.getByRole('checkbox') as HTMLInputElement
-
-        await user.click(input)
-        await user.click(input)
-
-        expect(handleInputClick).toHaveBeenCalledTimes(2)
     })
 })

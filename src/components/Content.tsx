@@ -71,7 +71,7 @@ function Content({hasStarted, goHome} : ContentProps) {
                 <div >
                     <span className="text-base sm:text-xl text-header font-black">Question:</span> 
                     <span className="text-base sm:text-xl">
-                        {" " + questionNumber}
+                        {" " + (questionNumber + 1)}
                         <span className="text-gray-500">/10</span>
                     </span>
                 </div>

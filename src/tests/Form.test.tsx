@@ -15,9 +15,9 @@ describe('App component tests', () => {
         expect(true).toBeTruthy()
     })
 
-    it('Checks only one checkbox', async () => {
+    it('Allows to choose only one option', async () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={goToNext}/>))
-        const inputs = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const inputs = screen.getAllByRole('radio') as HTMLInputElement[]
 
         // Clicking on the option A and then on the option B
         await user.click(inputs[0])
@@ -38,7 +38,7 @@ describe('App component tests', () => {
 
     it('Submits the form', async () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={goToNext}/>))
-        const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const input = screen.getAllByRole('radio') as HTMLInputElement[]
         const btn = screen.getByText('Submit')
         
         await user.click(input[0])
@@ -49,7 +49,7 @@ describe('App component tests', () => {
 
     it('Submits the correct answer', async () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={goToNext}/>))
-        const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const input = screen.getAllByRole('radio') as HTMLInputElement[]
         const btn = screen.getByText('Submit')
         
         //Clicking on the right option and check if it calls onSubmit function with the correct argument
@@ -61,7 +61,7 @@ describe('App component tests', () => {
 
     it('Submits the wrong answer', async () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={goToNext}/>))
-        const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const input = screen.getAllByRole('radio') as HTMLInputElement[]
         const btn = screen.getByText('Submit')
         
         //Clicking on the wrong option and check if it calls onSubmit function with the correct argument
@@ -84,7 +84,7 @@ describe('App component tests', () => {
     it('Disables "Submit" button after submitting the form', async () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={goToNext}/>))
         const btn = screen.getByText('Submit')
-        const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const input = screen.getAllByRole('radio') as HTMLInputElement[]
         
         //Clicking on 'Submit' button twice should call onSubmit() only once
         await user.click(input[0])
@@ -98,7 +98,7 @@ describe('App component tests', () => {
         await act(() => render(<Form answers={TestData[0].answers} correctAnswer='a' onSubmit={onSubmit} nextQuestion={goToNext}/>))
         const submit = screen.getByText('Submit')
         const next = screen.getByText('Next')
-        const input = screen.getAllByRole('checkbox') as HTMLInputElement[]
+        const input = screen.getAllByRole('radio') as HTMLInputElement[]
         
         await user.click(input[0])
         await user.click(submit)

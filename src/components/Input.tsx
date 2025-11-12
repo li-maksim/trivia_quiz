@@ -1,9 +1,8 @@
 import { type InputProps } from "../utils/interfaces"
-import { Check } from 'lucide-react'
 
-function Input({type = "checkbox", id, questionText, checked, fn, highlight}: InputProps) {
+function Input({type = "radio", id, questionText, checked, fn, highlight}: InputProps) {
 
-    if (type === "checkbox") {
+    if (type === "radio") {
         return (
                     <label
                     htmlFor={id}
@@ -13,7 +12,7 @@ function Input({type = "checkbox", id, questionText, checked, fn, highlight}: In
                           : "border-2 border-header"}`}
                     >
                         <input
-                            type="checkbox"
+                            type="radio"
                             id={id}
                             checked={checked}
                             onChange={() => fn(id)}
@@ -21,13 +20,15 @@ function Input({type = "checkbox", id, questionText, checked, fn, highlight}: In
                         />
                         <span
                             className="
-                            min-w-5 min-h-5 border-2 border-gray-400 rounded-md 
-                            flex items-center justify-center 
-                            peer-checked:bg-header peer-checked:border-header
+                            min-w-5 min-h-5 border-2 border-gray-400 rounded-full
+                            flex items-center justify-center
                             transition-all duration-200
+                            peer-checked:border-header peer-checked:bg-header
                             "
-                            >
-                            {checked && <Check size={16} strokeWidth={4} className="text-white" />}
+                        >
+                        {checked && (
+                        <span className="w-2.5 h-2.5 bg-white rounded-full"></span>
+                        )}
                         </span>
                         <span className="text-sm lg:text-lg">{questionText}</span>
                     </label>
