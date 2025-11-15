@@ -30,7 +30,7 @@ describe('Timer tests', () => {
 
         const timer = screen.getByText("00:03")
 
-        expect(timer.classList.contains("text-green-timer")).toBeTruthy()
+        expect(timer.classList.contains("text-[var(--color-green-timer)]")).toBeTruthy()
     })
 
     it('Is orange in the middle', async () => {
@@ -42,7 +42,7 @@ describe('Timer tests', () => {
             vi.advanceTimersByTime(3000)
         })
 
-        expect(timer.classList.contains("text-orange-timer")).toBeTruthy()
+        expect(timer.classList.contains("text-[var(--color-orange-timer)]")).toBeTruthy()
     })
 
     it('Is red in the end', async () => {
@@ -54,6 +54,6 @@ describe('Timer tests', () => {
             vi.advanceTimersByTime(5000)
         })
 
-        expect(timer.classList.contains("text-red")).toBeTruthy()
+        expect(timer.classList.contains("text-[var(--color-red)]")).toBeTruthy()
     })
 })

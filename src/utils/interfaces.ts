@@ -56,12 +56,6 @@ export interface TimerProps {
   }
 }
 
-export interface HeaderProps {
-  goHome: {
-    (): void
-  }
-}
-
 export interface ControlPanelProps extends TimerProps {
   questionNumber: number,
   score: number
@@ -81,6 +75,20 @@ export interface FinalScreenProps {
   message: string,
   score: number,
   completedQuestions: number,
+  goHome: {
+    (): void
+  }
+}
+
+export interface ToggleSwitchProps {
+  flipped: boolean,
+  switchFn: {
+    (): void
+  }
+}
+
+
+export interface HeaderProps extends ToggleSwitchProps {
   goHome: {
     (): void
   }

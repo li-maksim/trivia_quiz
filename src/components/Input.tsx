@@ -6,10 +6,10 @@ function Input({type = "radio", id, questionText, checked, fn, highlight}: Input
         return (
                     <label
                     htmlFor={id}
-                    className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer
-                        ${highlight === "green" ? "border-2 border-green-answer bg-green-answer" 
-                          : highlight === "red" ? "border-2 border-red bg-red"
-                          : "border-2 border-header"}`}
+                    className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer text-[var(--color-text)]
+                        ${highlight === "green" ? "border-2 border-[var(--color-green-answer)] bg-[var(--color-green-input-bg)]" 
+                          : highlight === "red" ? "border-2 border-[var(--color-red)] bg-[var(--color-red-input-bg)]"
+                          : "border-2 border-[var(--color-input-border)]"}`}
                     >
                         <input
                             type="radio"
@@ -20,14 +20,14 @@ function Input({type = "radio", id, questionText, checked, fn, highlight}: Input
                         />
                         <span
                             className="
-                            min-w-5 min-h-5 border-2 border-gray-400 rounded-full
+                            min-w-5 min-h-5 border-2 border-[var(--color-input-border)] rounded-full
                             flex items-center justify-center
                             transition-all duration-200
-                            peer-checked:border-header peer-checked:bg-header
+                            peer-checked:border-[var(--color-input-circle)] peer-checked:bg-[var(--color-input-circle)]
                             "
                         >
                         {checked && (
-                        <span className="w-2.5 h-2.5 bg-white rounded-full"></span>
+                        <span className="w-2.5 h-2.5 bg-[var(--color-bg)] rounded-full"></span>
                         )}
                         </span>
                         <span className="text-sm lg:text-lg">{questionText}</span>

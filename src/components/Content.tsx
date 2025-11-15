@@ -23,13 +23,13 @@ function Content({hasStarted, goHome} : ContentProps) {
     if (loading) return (
         <div className="w-full h-[calc(100vh-50px)] flex items-center justify-center">
             <div className="animate-spin">
-                <LoaderCircle size={64} />
+                <LoaderCircle color={"var(--color-disabled-btn)"} size={64} />
             </div>
         </div>
     )
     if (error) return (
         <div className="w-full h-[calc(100vh-50px)] flex items-center justify-center">
-        <div className="text-red">
+        <div className="text-[var(--color-red)]">
             Sorry, we have a little problem.
         </div>
     </div>
@@ -69,14 +69,14 @@ function Content({hasStarted, goHome} : ContentProps) {
             {/* Only for mobile devices */}
             <div className="flex justify-between md:hidden">
                 <div >
-                    <span className="text-base sm:text-xl text-header font-black">Question:</span> 
+                    <span className="text-base sm:text-xl text-[var(--color-header)] font-black">Question:</span> 
                     <span className="text-base sm:text-xl">
                         {" " + (questionNumber + 1)}
                         <span className="text-gray-500">/10</span>
                     </span>
                 </div>
                 <div>
-                    <span className="text-base sm:text-xl text-header font-black">Score:</span> 
+                    <span className="text-base sm:text-xl text-[var(--color-header)] font-black">Score:</span> 
                     <span className="text-base sm:text-xl">
                         {" " + score}
                         <span className="text-gray-500">/10</span>
@@ -85,10 +85,10 @@ function Content({hasStarted, goHome} : ContentProps) {
             </div>
 
             <div className="flex items-center justify-between mt-8 md:mt-0 max-[480px]:flex-col-reverse max-[480px]:justify-center max-[480px]:gap-4 max-[480px]:mt-4">
-                <p className="text-sm sm:text-base md:text-xl">{data[questionNumber].question}</p>
+                <p className="text-[var(--color-text)] text-sm sm:text-base md:text-xl">{data[questionNumber].question}</p>
                 {/* Timer for mobile devices */}
                 <div className="md:hidden">
-                    <Timer seconds={300} hasStarted={hasStarted && !showFinalScreen} onTimeout={handleTimeout}/>
+                    <Timer seconds={1300} hasStarted={hasStarted && !showFinalScreen} onTimeout={handleTimeout}/>
                 </div>
             </div>
 
@@ -105,7 +105,7 @@ function Content({hasStarted, goHome} : ContentProps) {
                     <ControlPanel
                         questionNumber={questionNumber + 1} 
                         score={score}
-                        seconds={300}
+                        seconds={1300}
                         hasStarted={hasStarted && !showFinalScreen}
                         onTimeout={handleTimeout}
                     />

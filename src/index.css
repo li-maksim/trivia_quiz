@@ -1,15 +1,39 @@
 @import "tailwindcss";
 
-@theme {
-    --color-header: #8C00FF; /* Header  */
-    --color-text-clr: #450693; /* Text */
+:root {
+    --color-header: #8C00FF;
+    --color-text: #000;
+    --color-text-btn: #450693; /* Text on buttons */
     --color-btn: #FFC400; /* Buttons, icon and H1 in header */
-    --color-time-mid: #FF703F; /* Timer */
-    --color-red: #FF3F7F; /* Wrong answers */
-    --color-green-answer: #3FFFA3; /* Correct answers */
+    --color-red: #FF3F7F; /* Border of inputs for wrong answers, timer */
+    --color-red-input-bg: #FF3F7F; /* Background of inputs for wrong answers */
+    --color-green-answer: #3FFFA3; /* Borders of inputs for correct answers */
+    --color-green-input-bg: #3FFFA3; /* Background of inputs for correct answers */
     --color-green-timer: #42B07B; /* Green for timer */
     --color-orange-timer: #FF703F; /* Orange for timer */
-    --color-bg-clr: #FFE6FF; /* Control panel background */
+    --color-bg: #FFF; /* Background */
+    --color-bg-panel: #FFE6FF; /* Control panel background */
+    --color-disabled-btn: #E5E7EB; /* Disabled buttons and loading circle */
+    --color-input-circle: #8C00FF; /* Active radio button */
+    --color-input-border: #8C00FF; 
+    --color-control-text: #8C00FF; /* "Question" and "Score" */
+    --color-control-text-highlight: #000; /* Number before slash in control panel */
+}
+
+.dark {
+    --color-header: #5B0BC3;
+    --color-text: #FFF;
+    --color-text-btn: #000039;
+    --color-btn: #FFC400;
+    --color-bg: #000039;
+    --color-red-input-bg: #000039;
+    --color-green-input-bg: #000039;
+    --color-bg-panel: #1E1E57;
+    --color-disabled-btn: #32326B;
+    --color-input-circle: #9747FF;
+    --color-input-border: #32326B;
+    --color-control-text: #E1E1E1;
+    --color-control-text-highlight: #FFC400;
 }
 
 body {

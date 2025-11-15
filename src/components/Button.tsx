@@ -7,7 +7,7 @@ function Button({btnType = "button", onClick, text, disabled = false}: ButtonPro
             <button
                 type={btnType}
                 onClick={onClick} 
-                className="min-h-10 min-w-25 pl-2 pr-2 cursor-pointer bg-btn text-text-clr text-sm md:text-base font-semibold rounded-lg uppercase hover:border-2 active:bg-text-clr active:text-btn active:border-none"
+                className="min-h-10 min-w-25 pl-2 pr-2 cursor-pointer bg-[var(--color-btn)] text-[var(--color-text-btn)] text-sm md:text-base font-semibold rounded-lg uppercase hover:bg-[var(--color-orange-timer)] active:bg-[var(--color-text-btn)] active:text-[var(--color-btn)] active:border-none"
             >
                 {text}
             </button>
@@ -15,7 +15,7 @@ function Button({btnType = "button", onClick, text, disabled = false}: ButtonPro
         return (
             <button
                 disabled
-                className="min-h-10 min-w-25 pl-2 pr-2 bg-gray-200 text-gray-400 text-sm md:text-base font-semibold rounded-lg uppercase"
+                className="min-h-10 min-w-25 pl-2 pr-2 bg-[var(--color-disabled-btn)] text-gray-400 text-sm md:text-base font-semibold rounded-lg uppercase"
             >
                 {text}
             </button>
