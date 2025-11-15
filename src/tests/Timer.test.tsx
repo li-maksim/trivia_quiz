@@ -1,59 +1,70 @@
-import Timer from '../components/Timer'
-import { vi } from 'vitest'
-import { render, act, screen } from '@testing-library/react'
+import Timer from "../components/Timer";
+import { vi } from "vitest";
+import { render, act, screen } from "@testing-library/react";
 
-describe('Timer tests', () => {
+describe("Timer tests", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
 
-    beforeEach(() => {
-        vi.useFakeTimers()
-    })
-    
-    afterEach(() => {
-        vi.useRealTimers()
-    })
+  afterEach(() => {
+    vi.useRealTimers();
+  });
 
-    const onTimeout = vi.fn()
+  const onTimeout = vi.fn();
 
-    it('Calls onTimeout after countdown ends', async () => {
-        await act(() => render(<Timer seconds={3} hasStarted={true} onTimeout={onTimeout} />))
+  it("Calls onTimeout after countdown ends", async () => {
+    await act(() =>
+      render(<Timer seconds={3} hasStarted={true} onTimeout={onTimeout} />)
+    );
 
-        //Waiting 3 seconds for timer to reach 0
-        act(() => {
-            vi.advanceTimersByTime(3000)
-        })
+    //Waiting 3 seconds for timer to reach 0
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
 
-        expect(onTimeout).toHaveBeenCalled()
-    })
+    expect(onTimeout).toHaveBeenCalled();
+  });
 
-    it('Is green in the beginning', async () => {
-        await act(() => render(<Timer seconds={3} hasStarted={true} onTimeout={onTimeout} />))
+  it("Is green in the beginning", async () => {
+    await act(() =>
+      render(<Timer seconds={3} hasStarted={true} onTimeout={onTimeout} />)
+    );
 
-        const timer = screen.getByText("00:03")
+    const timer = screen.getByText("00:03");
 
-        expect(timer.classList.contains("text-[var(--color-green-timer)]")).toBeTruthy()
-    })
+    expect(
+      timer.classList.contains("text-[var(--color-green-timer)]")
+    ).toBeTruthy();
+  });
 
-    it('Is orange in the middle', async () => {
-        await act(() => render(<Timer seconds={6} hasStarted={true} onTimeout={onTimeout} />))
+  it("Is orange in the middle", async () => {
+    await act(() =>
+      render(<Timer seconds={6} hasStarted={true} onTimeout={onTimeout} />)
+    );
 
-        const timer = screen.getByText("00:06")
+    const timer = screen.getByText("00:06");
 
-        act(() => {
-            vi.advanceTimersByTime(3000)
-        })
+    act(() => {
+      vi.advanceTimersByTime(3000);
+    });
 
-        expect(timer.classList.contains("text-[var(--color-orange-timer)]")).toBeTruthy()
-    })
+    expect(
+      timer.classList.contains("text-[var(--color-orange-timer)]")
+    ).toBeTruthy();
+  });
 
-    it('Is red in the end', async () => {
-        await act(() => render(<Timer seconds={6} hasStarted={true} onTimeout={onTimeout} />))
+  it("Is red in the end", async () => {
+    await act(() =>
+      render(<Timer seconds={6} hasStarted={true} onTimeout={onTimeout} />)
+    );
 
-        const timer = screen.getByText("00:06")
+    const timer = screen.getByText("00:06");
 
-        act(() => {
-            vi.advanceTimersByTime(5000)
-        })
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
 
-        expect(timer.classList.contains("text-[var(--color-red)]")).toBeTruthy()
-    })
-})
+    expect(timer.classList.contains("text-[var(--color-red)]")).toBeTruthy();
+  });
+});
