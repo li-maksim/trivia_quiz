@@ -74,19 +74,19 @@ function Content({ hasStarted, goHome }: ContentProps) {
       {/* Only for mobile devices */}
       <div className="flex justify-between md:hidden">
         <div>
-          <span className="text-base sm:text-xl text-[var(--color-header)] font-black">
+          <span className="text-[var(--color-text)] sm:text-xl text-[var(--color-header)] font-black">
             Question:
           </span>
-          <span className="text-base sm:text-xl">
+          <span className="text-[var(--color-text)] sm:text-xl">
             {" " + (questionNumber + 1)}
             <span className="text-gray-500">/10</span>
           </span>
         </div>
         <div>
-          <span className="text-base sm:text-xl text-[var(--color-header)] font-black">
+          <span className="text-[var(--color-text)] sm:text-xl text-[var(--color-header)] font-black">
             Score:
           </span>
-          <span className="text-base sm:text-xl">
+          <span className="text-[var(--color-text)] sm:text-xl">
             {" " + score}
             <span className="text-gray-500">/10</span>
           </span>
@@ -100,7 +100,7 @@ function Content({ hasStarted, goHome }: ContentProps) {
         {/* Timer for mobile devices */}
         <div className="md:hidden">
           <Timer
-            seconds={1300}
+            seconds={300}
             hasStarted={hasStarted && !showFinalScreen}
             onTimeout={handleTimeout}
           />
@@ -120,7 +120,7 @@ function Content({ hasStarted, goHome }: ContentProps) {
           <ControlPanel
             questionNumber={questionNumber + 1}
             score={score}
-            seconds={1300}
+            seconds={300}
             hasStarted={hasStarted && !showFinalScreen}
             onTimeout={handleTimeout}
           />
