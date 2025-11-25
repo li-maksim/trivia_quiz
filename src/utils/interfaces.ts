@@ -1,3 +1,5 @@
+import type { ChangeEvent } from "react";
+
 export interface InputProps {
   type?: string;
   id: string;
@@ -85,6 +87,16 @@ export interface ToggleSwitchProps {
   switchFn: {
     (): void;
   };
+}
+
+export interface SelectProps {
+  id: string,
+  question: string,
+  options: string[],
+  selected: string,
+  onChange: {
+    (e: ChangeEvent): void
+  }
 }
 
 export interface HeaderProps extends ToggleSwitchProps {
