@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Header from "./Header";
 import StartingScreen from "./StartingScreen";
 import Content from "./Content";
+import type { SelectedOptions } from "../utils/interfaces";
+import type { ChangeEvent } from "react";
 
 function App() {
   const [hasStarted, setHasStarted] = useState<boolean>(false);
@@ -11,6 +13,12 @@ function App() {
       return localStorage.getItem("theme") === "dark";
     }
     return false;
+  });
+  //Values of select components in StartingScreen
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
+    category: "HTML",
+    numOfQuestions: "10",
+    difficulty: "Medium"
   });
 
   useEffect(() => {
@@ -40,6 +48,11 @@ function App() {
     setHasStarted(false);
   }
 
+  function changeNumOfQuestions(e: ChangeEvent) {
+    const val: string = (e.target as HTMLOptionElement).value;
+    setSelectedOptions({...selectedOptions, numOfQuestions: val});
+  };
+
   return (
     <div className="bg-[var(--color-bg)] min-h-[100vh]">
       <Header
@@ -50,7 +63,7 @@ function App() {
       {hasStarted ? (
         <Content hasStarted={hasStarted} goHome={goHome} />
       ) : (
-        <StartingScreen startFn={start} />
+        <StartingScreen startFn={start} values={selectedOptions} changeNumOfQuestions={changeNumOfQuestions} />
       )}
     </div>
   );

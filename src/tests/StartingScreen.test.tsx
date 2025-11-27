@@ -1,17 +1,41 @@
 import StartingScreen from "../components/StartingScreen";
 import { render, act, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useState } from "react";
 
 describe("Starting screen tests", () => {
   const user = userEvent.setup();
 
   const handleStart = vi.fn();
 
+  const initialValues = {
+    category: "HTML",
+    numOfQuestions: "10",
+    difficulty: "Medium"
+  };
+
+  //Wrapping the StartingScreen for using states
+  function Wrapper() {
+    const [values, setValues] = useState(initialValues);
+  
+    return (
+      <StartingScreen
+        startFn={vi.fn()}
+        values={values}
+        changeNumOfQuestions={(e) =>
+          setValues({...values, numOfQuestions: e.target.value })
+        }
+      />
+    );
+  }
+
   it("Renders with option 10 as default", async () => {
     await act(() =>
       render(
         <StartingScreen
             startFn={handleStart}
+            values={initialValues}
+            changeNumOfQuestions={() => vi.fn()}
         />
       )
     );
@@ -25,11 +49,7 @@ describe("Starting screen tests", () => {
 
   it("Chooses option 20", async () => {
     await act(() =>
-      render(
-        <StartingScreen
-            startFn={handleStart}
-        />
-      )
+      render(<Wrapper />)
     );
 
     const select = screen.getByLabelText("Number of questions") as HTMLSelectElement;

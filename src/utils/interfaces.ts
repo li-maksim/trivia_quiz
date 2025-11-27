@@ -118,3 +118,9 @@ export interface Highlights {
   c: null | "green" | "red";
   d: null | "green" | "red";
 }
+
+export interface SelectedOptions {
+  numOfQuestions: string,
+  category: string,
+  difficulty: string
+}
