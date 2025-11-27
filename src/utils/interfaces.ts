@@ -44,10 +44,23 @@ export interface FormProps {
   };
 }
 
+
+export interface SelectedOptions {
+  numOfQuestions: string,
+  category: string,
+  difficulty: string
+}
+
 export interface StartingScreenProps {
   startFn: {
     (): void;
-  };
+  },
+  values: SelectedOptions,
+  changeOption: {
+    numOfQuestions(e: ChangeEvent): void,
+    category(e: ChangeEvent): void,
+    difficulty(e: ChangeEvent): void
+  }
 }
 
 export interface TimerProps {
@@ -117,10 +130,4 @@ export interface Highlights {
   b: null | "green" | "red";
   c: null | "green" | "red";
   d: null | "green" | "red";
-}
-
-export interface SelectedOptions {
-  numOfQuestions: string,
-  category: string,
-  difficulty: string
 }

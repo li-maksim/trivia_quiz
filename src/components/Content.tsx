@@ -7,13 +7,11 @@ import { type ContentProps } from "../utils/interfaces";
 import { useFetchData } from "../utils/useFetchData";
 import { LoaderCircle } from "lucide-react";
 
-function Content({ hasStarted, goHome }: ContentProps) {
+function Content({ hasStarted, goHome, url }: ContentProps) {
   const initialMessage = "You've completed the Quiz!";
 
   //Fetching questions from API
-  const [data, loading, error] = useFetchData(
-    "https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=html&difficulty=Easy&limit=10"
-  );
+  const [data, loading, error] = useFetchData(url);
   //Keeping the player's score and the current question
   const [questionNumber, setQuestionNumber] = useState<number>(0);
   const [score, setScore] = useState<number>(0);

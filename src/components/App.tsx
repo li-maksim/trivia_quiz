@@ -21,6 +21,8 @@ function App() {
     difficulty: "Medium"
   });
 
+  const url = `https://quizapi.io/api/v1/questions?apiKey=xRDmaYsgDhyUiLWHT21yyxLmix8t8tzARKCgog2w&category=${selectedOptions.category === "Random" ? "" : selectedOptions.category.toLowerCase()}&difficulty=${selectedOptions.difficulty.toLowerCase()}&limit=${selectedOptions.numOfQuestions}`
+
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "dark") {
@@ -48,10 +50,25 @@ function App() {
     setHasStarted(false);
   }
 
-  function changeNumOfQuestions(e: ChangeEvent) {
-    const val: string = (e.target as HTMLOptionElement).value;
-    setSelectedOptions({...selectedOptions, numOfQuestions: val});
-  };
+  const changeOption = (() => {
+
+    function numOfQuestions(e: ChangeEvent) {
+      const val: string = (e.target as HTMLOptionElement).value;
+      setSelectedOptions({...selectedOptions, numOfQuestions: val});
+    };
+
+    function category(e: ChangeEvent) {
+      const val: string = (e.target as HTMLOptionElement).value;
+      setSelectedOptions({...selectedOptions, category: val});
+    };
+
+    function difficulty(e: ChangeEvent) {
+      const val: string = (e.target as HTMLOptionElement).value;
+      setSelectedOptions({...selectedOptions, difficulty: val});
+    };
+
+    return { numOfQuestions, category, difficulty }
+  })();
 
   return (
     <div className="bg-[var(--color-bg)] min-h-[100vh]">
@@ -61,9 +78,12 @@ function App() {
         switchFn={() => setIsDark((prev) => !prev)}
       />
       {hasStarted ? (
-        <Content hasStarted={hasStarted} goHome={goHome} />
+        <Content hasStarted={hasStarted} goHome={goHome} url={url} />
       ) : (
-        <StartingScreen startFn={start} values={selectedOptions} changeNumOfQuestions={changeNumOfQuestions} />
+        <StartingScreen 
+        startFn={start} 
+        values={selectedOptions} 
+        changeOption={changeOption} />
       )}
     </div>
   );

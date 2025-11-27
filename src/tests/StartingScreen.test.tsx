@@ -13,41 +13,61 @@ describe("Starting screen tests", () => {
     numOfQuestions: "10",
     difficulty: "Medium"
   };
-
+  
   //Wrapping the StartingScreen for using states
   function Wrapper() {
     const [values, setValues] = useState(initialValues);
+
+    const changeOption = (() => {
+
+      function numOfQuestions(e) {
+        const val: string = e.target.value;
+        setValues({...values, numOfQuestions: val});
+      }
+  
+      function category(e) {
+        const val: string = (e.target as HTMLOptionElement).value;
+        setValues({...values, category: val});
+      };
+  
+      function difficulty(e) {
+        const val: string = (e.target as HTMLOptionElement).value;
+        setValues({...values, difficulty: val});
+      };
+  
+      return { numOfQuestions, category, difficulty }
+    })();
   
     return (
       <StartingScreen
         startFn={vi.fn()}
         values={values}
-        changeNumOfQuestions={(e) =>
-          setValues({...values, numOfQuestions: e.target.value })
-        }
+        changeOption={changeOption}
       />
     );
   }
 
-  it("Renders with option 10 as default", async () => {
+  it("Renders with correct default options", async () => {
     await act(() =>
       render(
         <StartingScreen
             startFn={handleStart}
             values={initialValues}
-            changeNumOfQuestions={() => vi.fn()}
+            changeOption={{}}
         />
       )
     );
 
-    const select = screen.getByText("10");
+    const numOfQuestions = screen.getByLabelText("Number of questions") as HTMLSelectElement;
+    const category = screen.getByLabelText("Category") as HTMLSelectElement;
+    const difficulty = screen.getByLabelText("Difficulty") as HTMLSelectElement;
 
-    await user.click(select);
-
-    expect(true).toBeTruthy();
+    expect(numOfQuestions.value).toBe("10");
+    expect(category.value).toBe("HTML");
+    expect(difficulty.value).toBe("Medium");
   });
 
-  it("Chooses option 20", async () => {
+  it("Chooses number of questions '20'", async () => {
     await act(() =>
       render(<Wrapper />)
     );
@@ -62,5 +82,39 @@ describe("Starting screen tests", () => {
     );
     
     expect(select.value).toBe("20");
+  });
+
+  it("Chooses category 'DevOps'", async () => {
+    await act(() =>
+      render(<Wrapper />)
+    );
+
+    const select = screen.getByLabelText("Category") as HTMLSelectElement;
+
+    await user.click(select);
+
+    await user.selectOptions(
+        select,
+        screen.getByRole("option", { name: "DevOps" })
+    );
+    
+    expect(select.value).toBe("DevOps");
+  });
+
+  it("Chooses difficulty 'Hard'", async () => {
+    await act(() =>
+      render(<Wrapper />)
+    );
+
+    const select = screen.getByLabelText("Difficulty") as HTMLSelectElement;
+
+    await user.click(select);
+
+    await user.selectOptions(
+        select,
+        screen.getByRole("option", { name: "Hard" })
+    );
+    
+    expect(select.value).toBe("Hard");
   });
 });
