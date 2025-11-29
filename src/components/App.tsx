@@ -78,7 +78,12 @@ function App() {
         switchFn={() => setIsDark((prev) => !prev)}
       />
       {hasStarted ? (
-        <Content hasStarted={hasStarted} goHome={goHome} url={url} />
+        <Content 
+          hasStarted={hasStarted} 
+          goHome={goHome} 
+          url={url}
+          numOfQuestions={parseInt(selectedOptions.numOfQuestions)}
+        />
       ) : (
         <StartingScreen 
         startFn={start} 

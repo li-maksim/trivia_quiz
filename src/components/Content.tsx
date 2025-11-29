@@ -7,7 +7,7 @@ import { type ContentProps } from "../utils/interfaces";
 import { useFetchData } from "../utils/useFetchData";
 import { LoaderCircle } from "lucide-react";
 
-function Content({ hasStarted, goHome, url }: ContentProps) {
+function Content({ hasStarted, goHome, url, numOfQuestions }: ContentProps) {
   const initialMessage = "You've completed the Quiz!";
 
   //Fetching questions from API
@@ -53,7 +53,7 @@ function Content({ hasStarted, goHome, url }: ContentProps) {
   }
 
   function nextQuestion(): void {
-    if (questionNumber < 9) {
+    if (questionNumber < numOfQuestions - 1) {
       setQuestionNumber(questionNumber + 1);
     } else {
       //Finishing the quiz if the player answered all questions
@@ -77,7 +77,7 @@ function Content({ hasStarted, goHome, url }: ContentProps) {
           </span>
           <span className="text-[var(--color-text)] sm:text-xl">
             {" " + (questionNumber + 1)}
-            <span className="text-gray-500">/10</span>
+            <span className="text-gray-500">/{numOfQuestions}</span>
           </span>
         </div>
         <div>
@@ -86,7 +86,7 @@ function Content({ hasStarted, goHome, url }: ContentProps) {
           </span>
           <span className="text-[var(--color-text)] sm:text-xl">
             {" " + score}
-            <span className="text-gray-500">/10</span>
+            <span className="text-gray-500">/{numOfQuestions}</span>
           </span>
         </div>
       </div>
@@ -98,7 +98,7 @@ function Content({ hasStarted, goHome, url }: ContentProps) {
         {/* Timer for mobile devices */}
         <div className="md:hidden">
           <Timer
-            seconds={300}
+            seconds={30 * numOfQuestions}
             hasStarted={hasStarted && !showFinalScreen}
             onTimeout={handleTimeout}
           />
@@ -118,9 +118,10 @@ function Content({ hasStarted, goHome, url }: ContentProps) {
           <ControlPanel
             questionNumber={questionNumber + 1}
             score={score}
-            seconds={300}
+            seconds={30 * numOfQuestions}
             hasStarted={hasStarted && !showFinalScreen}
             onTimeout={handleTimeout}
+            numOfQuestions={numOfQuestions}
           />
         </div>
       </div>
@@ -130,6 +131,7 @@ function Content({ hasStarted, goHome, url }: ContentProps) {
         score={score}
         completedQuestions={questionNumber}
         goHome={goHome}
+        numOfQuestions={numOfQuestions}
       />
     </section>
   );

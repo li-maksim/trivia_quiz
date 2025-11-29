@@ -40,7 +40,7 @@ function Input({
             <span className="w-2.5 h-2.5 bg-[var(--color-bg)] rounded-full"></span>
           )}
         </span>
-        <span className="text-sm lg:text-lg">{questionText}</span>
+        <span className="text-sm lg:text-lg break-words overflow-hidden hyphens-auto leading-snug">{questionText}</span>
       </label>
     );
   } else {

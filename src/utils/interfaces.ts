@@ -27,10 +27,12 @@ export interface Question {
 export type Questions = Question[];
 
 export interface ContentProps {
-  hasStarted: boolean;
+  hasStarted: boolean,
   goHome: {
     (): void;
-  };
+  },
+  url: string,
+  numOfQuestions: number
 }
 
 export interface FormProps {
@@ -74,6 +76,7 @@ export interface TimerProps {
 export interface ControlPanelProps extends TimerProps {
   questionNumber: number;
   score: number;
+  numOfQuestions: number
 }
 
 export interface ButtonProps {
@@ -93,6 +96,7 @@ export interface FinalScreenProps {
   goHome: {
     (): void;
   };
+  numOfQuestions: number
 }
 
 export interface ToggleSwitchProps {

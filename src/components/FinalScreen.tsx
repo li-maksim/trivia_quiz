@@ -7,6 +7,7 @@ function FinalScreen({
   score,
   completedQuestions,
   goHome,
+  numOfQuestions
 }: FinalScreenProps) {
   if (show)
     return (
@@ -15,16 +16,16 @@ function FinalScreen({
           <div className="text-sm sm:text-xl font-bold">{message}</div>
           {completedQuestions < 9 && (
             <div className="text-sm sm:text-xl">
-              {"You completed " + completedQuestions + " out of 10 questions."}
+              {"You completed " + completedQuestions + ` out of ${numOfQuestions} questions.`}
             </div>
           )}
           <div className="text-sm sm:text-xl">
             Final score:
-            {score < 4 ? (
+            {score < Math.ceil(numOfQuestions / 3) ? (
               <span className="font-bold text-[var(--color-red)]">
                 {" " + score}
               </span>
-            ) : score < 8 ? (
+            ) : score < Math.ceil(numOfQuestions / 3 * 2) ? (
               <span className="font-bold text-[var(--color-orange-timer)]">
                 {" " + score}
               </span>
